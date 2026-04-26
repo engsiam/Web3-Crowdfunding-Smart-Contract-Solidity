@@ -1,90 +1,145 @@
-# 🚀 Crowdfunding Smart Contract - Hardhat Assignment
+# 🚀 Crowdfunding Platform
 
-A robust, secure, and fully functional crowdfunding smart contract built with **Solidity**, **Hardhat**, and deployed on the **Sepolia Testnet**.
+A decentralized crowdfunding platform built with **Solidity**, **Hardhat**, **Next.js**, **React**, and **Ethers.js**, deployed on the **Sepolia Ethereum Testnet**.
 
 This project was developed as part of the **NonAcademy Blockchain Development Course (Batch 4)**.
 
 ---
 
-## 🎯 Project Objective
+## 🎯 Project Overview
 
-The objective of this project is to design a decentralized crowdfunding platform where:
-
-* Project creators can launch campaigns with a funding goal and deadline
-* Backers can contribute ETH to support campaigns
-* Funds are released only if the funding goal is met
-* If the goal is not met, contributors can claim a full refund
+A fully functional decentralized crowdfunding platform where:
+- Project creators can launch campaigns with funding goals and deadlines
+- Backers can contribute ETH to support campaigns
+- Funds are released only if the funding goal is met
+- If the goal is not met, contributors can claim a full refund
 
 ---
 
 ## ✨ Features
 
-* ✅ **Dynamic Campaign Creation**
-  Create campaigns with title, description, funding goal, and duration (1–60 days)
+### Smart Contract
+- **Dynamic Campaign Creation** - Create campaigns with title, description, funding goal, min contribution, and duration (1-60 days)
+- **Secure Contributions** - Enforces minimum contribution and deadline validation
+- **Fund Management** - `claimFunds()` for successful campaigns, `refund()` for failed campaigns
+- **Reentrancy Protection** - Implements Checks-Effects-Interactions (CEI) pattern
+- **Event Logging** - Emits events for campaign creation, contributions, fund claims, and refunds
 
-* ✅ **Secure Contributions**
-  Enforces minimum contribution and deadline validation
-
-* ✅ **Fund Management System**
-
-  * `claimFunds()` for successful campaigns
-  * `refund()` for failed campaigns
-
-* ✅ **Reentrancy Protection**
-  Implements **Checks-Effects-Interactions (CEI)** pattern
-
-* ✅ **Event Logging**
-  Emits events for:
-
-  * Campaign creation
-  * Contributions
-  * Fund claims
-  * Refunds
-
-* 🎖️ **Bonus Feature**
-  Minimum contribution requirement per campaign
+### Frontend dApp
+- **MetaMask Integration** - Secure wallet connection
+- **Real-time Analytics** - Track funding trends with charts
+- **Funding Activity** - View all campaign transactions on Etherscan
+- **Fast UI** - Next.js with Turbopack for lightning performance
+- **Dark Theme** - Modern amber/orange color scheme
+- **Responsive Design** - Works on desktop and mobile
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-* **Smart Contract:** Solidity `^0.8.20`
-* **Development Environment:** Hardhat
-* **Testing:** Ethers.js + Mocha + Chai
-* **Network:** Sepolia Testnet
+### Backend (Smart Contract)
+| Technology | Purpose |
+|------------|---------|
+| Solidity ^0.8.20 | Smart contract language |
+| Hardhat | Development environment |
+| Ethers.js v6 | Blockchain interaction |
+| Mocha + Chai | Testing framework |
+| Sepolia Testnet | Deployment network |
+
+### Frontend (dApp)
+| Technology | Purpose |
+|------------|---------|
+| Next.js 16 | React framework with App Router |
+| React 19 | UI library |
+| TypeScript | Type-safe development |
+| Tailwind CSS v4 | Utility-first styling |
+| Zustand | Lightweight state management |
+| Ethers.js v6 | Ethereum blockchain interaction |
+| Recharts | Analytics charts |
+| react-hot-toast | Transaction notifications |
 
 ---
 
 ## 📂 Project Structure
 
-```bash
-crowdfunding-assignment/
-├── contracts/          # Crowdfunding.sol (Core logic)
-├── scripts/            # deploy.js (Deployment script)
-├── test/               # Crowdfunding.test.js (12+ test cases)
-├── hardhat.config.js   # Network & Etherscan config
-├── .env                # Environment variables (hidden)
-├── .gitignore          # Ignored files
-└── README.md           # Documentation
 ```
+crowdfunding/
+├── backend/                    # Smart contract (Hardhat)
+│   ├── contracts/              # Crowdfunding.sol
+│   ├── scripts/               # Deployment scripts
+│   ├── test/                  # Test cases
+│   └── hardhat.config.js       # Network configuration
+│
+├── frontend/                  # Next.js dApp
+│   ├── src/
+│   │   ├── app/               # App router pages
+│   │   ├── components/        # UI components
+│   │   ├── hooks/             # Custom hooks
+│   │   ├── lib/               # Utilities
+│   │   ├── store/             # Zustand stores
+│   │   └── types/             # Type definitions
+│   └── package.json
+│
+└── README.md                   # This file
+```
+
+---
+
+## 🔗 Smart Contract
+
+**Contract Address:** `0xDFC67a4976C3719CD2F6531808F40953406f8205`
+
+**Etherscan:** https://sepolia.etherscan.io/address/0xDFC67a4976C3719CD2F6531808F40953406f8205
+
+### Contract Functions
+
+| Function | Description |
+|----------|-------------|
+| `createCampaign()` | Create a new campaign |
+| `contribute()` | Contribute ETH to a campaign |
+| `claimFunds()` | Creator claims funds when goal met |
+| `refund()` | Contributors request refund |
+| `getCampaign()` | Get campaign details |
+| `campaignCount()` | Get total campaign count |
+
+### Contract Events
+
+| Event | Description |
+|-------|-------------|
+| `CampaignCreated` | New campaign created |
+| `ContributionReceived` | ETH contributed |
+| `FundsClaimed` | Creator claimed funds |
+| `RefundIssued` | Refund processed |
+
+---
+
+## 🌐 Network Configuration
+
+| Network | Chain ID | RPC URL |
+|---------|----------|---------|
+| Sepolia Testnet | `0xaa36a7` | `https://rpc.sepolia.org` |
 
 ---
 
 ## 🚀 Getting Started
 
-### 1. Installation
+### Prerequisites
+- Node.js 18+
+- MetaMask wallet
+- Sepolia ETH (for testing)
+
+### Backend Setup
 
 ```bash
-git clone <your-repo-url>
-cd crowdfunding-assignment
+cd backend
 npm install
+npx hardhat compile
+npx hardhat test
 ```
 
----
+#### Environment Variables
 
-### 2. Environment Configuration
-
-Create a `.env` file in the root directory:
+Create `.env` in backend directory:
 
 ```env
 SEPOLIA_RPC_URL=your_alchemy_or_infura_url
@@ -92,64 +147,74 @@ PRIVATE_KEY=your_wallet_private_key
 ETHERSCAN_API_KEY=your_etherscan_api_key
 ```
 
----
-
-### 3. Compile & Test
-
-```bash
-# Compile contracts
-npx hardhat compile
-
-# Run tests
-npx hardhat test
-```
-
----
-
-### 4. Deployment
+#### Deployment
 
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
 ```
 
----
-
-### 5. Contract Verification
+### Frontend Setup
 
 ```bash
-npx hardhat verify --network sepolia 0xDFC67a4976C3719CD2F6531808F40953406f8205
+cd frontend
+npm install
+npm run dev
+```
+
+#### Environment Variables
+
+Create `.env.local` in frontend directory:
+
+```env
+NEXT_PUBLIC_CONTRACT_ADDRESS=0xDFC67a4976C3719CD2F6531808F40953406f8205
+NEXT_PUBLIC_CHAIN_ID=0xaa36a7
 ```
 
 ---
 
-## 🔗 Live Deployment
+## 📄 Pages Overview
 
-* **Contract Address:**
-  `0xDFC67a4976C3719CD2F6531808F40953406f8205`
+### Dashboard (`/`)
+- Project overview stats (Total Raised, Active Campaigns)
+- Campaign grid with progress bars
+- Launch Campaign modal
+- Connect wallet functionality
 
-* **Etherscan:**
-  https://sepolia.etherscan.io/address/0xDFC67a4976C3719CD2F6531808F40953406f8205
+### Analytics (`/analytics`)
+- Funding statistics cards
+- Contributions over time chart
+- Global funding trends
 
----
-
-## 📸 Proof of Work
-
-### ✅ Automated Tests
-
-* All **12+ test cases passed successfully**
-* Includes edge cases:
-
-  * Deadline validation
-  * Goal logic
-  * Refund conditions
+### Funding Activity (`/transactions`)
+- Transaction history table
+- Filter by type
+- Etherscan links
 
 ---
 
-### 🔍 Live Interaction
+## 📸 Project Preview
 
-* Tested campaign creation and contributions on Sepolia
-* Transactions verified via Etherscan
-* Smart contract fully verified and public
+![Dashboard Preview](https://i.ibb.co.com/k207H0Vw/crowdfunding.png)
+![Frontend Preview](https://i.ibb.co.com/xVzdbDq/Screenshot-6.png)
+
+---
+
+## ✅ Tests
+
+All **12+ smart contract test cases** passed including:
+- Deadline validation
+- Goal logic
+- Refund conditions
+- Reentrancy protection
+
+---
+
+## 🔒 Security Notes
+
+- All transactions require MetaMask connection
+- Contract verified on Sepolia testnet
+- Never share private keys
+- Use testnet for development only
 
 ---
 
@@ -158,22 +223,15 @@ npx hardhat verify --network sepolia 0xDFC67a4976C3719CD2F6531808F40953406f8205
 **Md. Shohrab Hossain**
 Software Engineer & Full Stack Developer
 
-* 🔗 GitHub: https://github.com/engsiam/Web3-Crowdfunding-Smart-Contract-Solidity
-* 🔗 LinkedIn: https://www.linkedin.com/in/md-shohrab-hossain-14745133
+- GitHub: https://github.com/engsiam/Web3-Crowdfunding-Smart-Contract-Solidity
+- LinkedIn: https://www.linkedin.com/in/md-shohrab-hossain-14745133
 
 ---
 
-## ⭐ Final Notes
+## 📜 License
 
-This project demonstrates:
-
-* Smart contract design & security principles
-* Real-world crowdfunding logic
-* Testing, deployment, and verification workflow
+MIT License - Built for educational purposes on Ethereum Sepolia testnet.
 
 ---
-## 📸 Transaction Screenshots
 
-![Campaign Creation](https://i.ibb.co.com/k207H0Vw/crowdfunding.png)
-
-
+**Built with ❤️ using Solidity, Hardhat, Next.js, and Ethers.js**

@@ -1,0 +1,37 @@
+'use client';
+
+import { ReactNode } from 'react';
+import Link from 'next/link';
+
+interface NavbarProps {
+  children?: ReactNode;
+}
+
+export function Navbar({ children }: NavbarProps) {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-between px-6 py-3 rounded-2xl bg-zinc-900/80 backdrop-blur-xl border border-zinc-800">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
+              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z" />
+              </svg>
+            </div>
+            <span className="text-xl font-bold text-zinc-100">Crowdfunding</span>
+          </Link>
+          
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-zinc-400 hover:text-amber-400 transition-colors">Dashboard</Link>
+            <Link href="/transactions" className="text-zinc-400 hover:text-amber-400 transition-colors">Funding Activity</Link>
+            <Link href="/analytics" className="text-zinc-400 hover:text-amber-400 transition-colors">Analytics</Link>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {children}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
