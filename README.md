@@ -193,8 +193,12 @@ NEXT_PUBLIC_CHAIN_ID=0xaa36a7
 ---
 
 ## 📸 Project Preview
+Etherscan: https://sepolia.etherscan.io/address/0xDFC67a4976C3719CD2F6531808F40953406f8205
 
 ![Dashboard Preview](https://i.ibb.co.com/k207H0Vw/crowdfunding.png)
+
+-Live Link: https://web3-crowdfunding-smart-contract-so.vercel.app
+
 ![Frontend Preview](https://i.ibb.co.com/xVzdbDq/Screenshot-6.png)
 
 ---
@@ -225,6 +229,7 @@ Software Engineer & Full Stack Developer
 
 - GitHub: https://github.com/engsiam/Web3-Crowdfunding-Smart-Contract-Solidity
 - LinkedIn: https://www.linkedin.com/in/md-shohrab-hossain-14745133
+
 
 ---
 
